@@ -10,11 +10,12 @@
     "readline-sync": "^1.4.4",
     "steam": "^1.4.0",
     "steamid": "^1.1.0",
-    "csgo": "^1.5.0"
+    "csgo": "^1.5.0",
+    "colors": "^1.1.2"
   },
   "devDependencies": {},
   "scripts": {
-    "update": "node ./protos/updater.js",
+    "update": "node protos/updater.js",
     "install": "npm run update",
     "start": "node bot.js"
   },
@@ -22,5 +23,6 @@
     "type": "git",
     "url": "reportbot"
   },
-  "author": "salumguilherme"
+  "author": "salumguilherme",
+  "license": "MIT"
 }
