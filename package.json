@@ -1,6 +1,6 @@
 {
   "name": "reportbot",
-  "version": "1.0.0",
+  "version": "1.0b",
   "description": "",
   "main": "bot.js",
   "dependencies": {
