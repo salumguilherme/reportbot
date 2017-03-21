@@ -523,7 +523,7 @@ v_log("Checking match share code.");
 	 */
 	function v_log(message, obj) {
 		
-		if(!verbose)
+		if(typeof process.argv[2] == 'undefined' || process.argv[2] != 'debug')
 			return;
 		
 		console.log("[log]".cyan.bold+" "+message);
