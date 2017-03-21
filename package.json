@@ -18,7 +18,7 @@
     "update": "node ./protos/updater.js",
     "install": "npm run update",
     "start": "node bot.js --debug_log='false'",
-    "start:debug": "node bot.js --debug_log='true'",
+    "start:debug": "node bot.js --debug_log='true'"
   },
   "repository": {
     "type": "git",
