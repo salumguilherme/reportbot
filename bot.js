@@ -539,8 +539,8 @@ v_log("Checking match share code.");
 		
 	}
 		
-	// Uncaught exceptions - verbose only
-	Process.on("uncaughtException", function(error) {
+	// Uncaught exceptions
+	process.on("uncaughtException", function(error) {
 		
 		console.log('[err]'.red.bold+' Uncaught Exception. Error: '+error);
 		
