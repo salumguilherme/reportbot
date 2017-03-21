@@ -134,7 +134,10 @@ v_log("Checking match share code.");
 			
 		// Strips our the steam bits from our sharecode
 		// CSGO-XXXXX-XXXXX-XXXXX-XXXXX-XXXXX
-		MatchShareCode = MatchShareCode.match(/(CSGO-[\da-zA-Z-]+)$/g).shift();
+		MatchShareCode = MatchShareCode.match(/(CSGO-[\da-zA-Z-]+)$/g);
+		
+		if(MatchShareCode.length > 0)
+			MatchShareCode = MatchShareCode.shift();
 		
 		v_log("ShareCode cleaned up, calling our decoder. Cleaned MatchShareCode: "+MatchShareCodeCode);
 		
