@@ -28,12 +28,12 @@ var fs = require("fs"),
 	Process = require("process"),
 	colors = require("colors");
 	
-console.log(process.argv);
-console.log(Process.argv);
+if(typeof process.argv[2] != 'undefined' && process.argv[2] == 'debug')
+	console.log(process.argv[2]);
+	
 //////////////////
 // Change These
-var ScriptTimeout = 45000, 				// Script timeout in milliseconds - 45000 = 45 seconds
-	verbose = false;						// Change to true to enable debug mode and have more script feedback
+var ScriptTimeout = 45000; 				// Script timeout in milliseconds - 45000 = 45 seconds
 	
 // Stores our SteamClients once connected
 // so we can disconnect them on timeout
