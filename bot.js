@@ -24,7 +24,8 @@ var fs = require("fs"),
 	ReadlineSync = require("readline-sync"),
 	Protos = require("./protos/protos.js"),
 	Long = require("long"),
-	Process = require("process");
+	Process = require("process"),
+	colors = require("colors");
 	
 //////////////////
 // Change These
@@ -437,7 +438,7 @@ v_log("Checking match share code.");
 		var accounts = [],
 			accounts_text_array = fs.readFileSync("accounts.txt").toString().split("\n");
 			
-		v_log("Grrabbing accounts text from file accounts.txt");
+		v_log("Grabbing accounts text from file accounts.txt");
 			
 		// Loops each line and grabs the username and password
 		for(account_index in accounts_text_array) {
@@ -522,7 +523,7 @@ v_log("Checking match share code.");
 		if(!verbose)
 			return;
 		
-		console.log(message);
+		console.log("log".cyan.bold+" - "+message);
 		
 		if(typeof obj !== null && typeof obj != 'undefined') {
 			
