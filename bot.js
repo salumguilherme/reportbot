@@ -15,6 +15,7 @@
  * @modified 2017-03-19
  */
  
+ 
 ////////////
 // Essential
 var fs = require("fs"),
@@ -27,6 +28,8 @@ var fs = require("fs"),
 	Process = require("process"),
 	colors = require("colors");
 	
+console.log(process.argv);
+console.log(Process.argv);
 //////////////////
 // Change These
 var ScriptTimeout = 45000, 				// Script timeout in milliseconds - 45000 = 45 seconds
