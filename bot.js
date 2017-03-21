@@ -47,8 +47,8 @@ var CountReports = 0,
 	
 // Grabs the steamID and potentially sharecode
 // Use steamid https://steamid.xyz if necessary
-var ReportingID = ReadlineSync.question("[str]".bgGreen.black.bold+" SteamID64 of the account being reported: "),
-	MatchShareCode = ReadlineSync.question("[str]".bgGreen.black.bold+" Match Sharecode - Leave blank if the account being reported is in game: ");
+var ReportingID = ReadlineSync.question("[str]".green.bold+" SteamID64 of the account being reported: "),
+	MatchShareCode = ReadlineSync.question("[str]".green.bold+" Match Sharecode - Leave blank if the account being reported is in game: ");
 	
 // Validates the steam id being reported
 var _check_reporting_id = new SteamID(ReportingID);
@@ -56,7 +56,7 @@ var _check_reporting_id = new SteamID(ReportingID);
 // Invalid reporting id provided
 if(!_check_reporting_id || typeof _check_reporting_id.accountid == 'undefined' || _check_reporting_id.accountid.length == 0) {
 	
-	console.log('[err]'.bgRed.black.bold+' Invalid SteamID64 provided for account being reported. Please double check. Process will now exit.');
+	console.log('[err]'.red.bold+' Invalid SteamID64 provided for account being reported. Please double check. Process will now exit.');
 	Process.exit();
 	
 }
@@ -97,7 +97,7 @@ v_log("Checking match share code.");
 			if(ReportsProcessed.indexOf(account_index) === -1) {
 				
 				// Let the user know this report was not processed
-				console.log('[err]'.bgRed.black.bold+' Report bot "'+BotAccounts[account_index].username+'" timed out. Disconnecting Steam Client.');
+				console.log('[err]'.red.bold+' Report bot "'+BotAccounts[account_index].username+'" timed out. Disconnecting Steam Client.');
 				
 				// Ensures the steamclient is set as well to avoid errors
 				if(typeof SteamClients[account_index] != 'undefined')
@@ -144,7 +144,7 @@ v_log("Checking match share code.");
 		if(sc_decoder.decode().matchId == null || typeof sc_decoder.decode().matchId == 'undefined' || sc_decoder.decode().matchId.length == 0) {
 			
 			// Messsage and exit
-			console.log("[err]".bgRed.black.bold+" Unable to grab match ID from share code provided. Please check share code and try again. The script will now exit.");
+			console.log("[err]".red.bold+" Unable to grab match ID from share code provided. Please check share code and try again. The script will now exit.");
 			Process.exit();
 			
 		}
@@ -200,7 +200,7 @@ v_log("Checking match share code.");
 			// Failed to login
 			if(response.eresult !== Steam.EResult.OK) {
 				
-				console.log('[err]'.bgRed.black.bold+' Login for '+BotAccounts[0].username+' failed - Unable to fetch live match ID. Steam client will disconnect and this script will terminate.');
+				console.log('[err]'.red.bold+' Login for '+BotAccounts[0].username+' failed - Unable to fetch live match ID. Steam client will disconnect and this script will terminate.');
 				steam_client.disconnect();
 				Process.exit();
 				return;
@@ -227,7 +227,7 @@ v_log("Checking match share code.");
 					if(typeof list.matches[0].matchid == 'undefined') {
 						
 						// Could not find match id
-						console.log('[err]'.bgRed.black.bold+' Failed to fetch live match ID. The script will not continue.');
+						console.log('[err]'.red.bold+' Failed to fetch live match ID. The script will not continue.');
 						steam_client.disconnect();
 						Process.exit();
 						return;
@@ -248,7 +248,7 @@ v_log("Checking match share code.");
 			// Something happend and steam client could not connect
 			steam_client.on('error', function(error) {
 				
-				console.log('[err]'.bgRed.black.bold+' Steam Client failed to connect. Error to follow. The script will not continue.');
+				console.log('[err]'.red.bold+' Steam Client failed to connect. Error to follow. The script will not continue.');
 				console.log(error);
 				steam_client.disconnect();
 				Process.exit();
@@ -320,7 +320,7 @@ v_log("Checking match share code.");
 			if(response.eresult !== Steam.EResult.OK) {
 				
 				// Message and disconnect
-				console.log('[err]'.bgRed.black.bold+' Failed logging in with bot account "'+this_account.username+'". Disconnecting steam client.');
+				console.log('[err]'.red.bold+' Failed logging in with bot account "'+this_account.username+'". Disconnecting steam client.');
 				steam_client.disconnect();
 				return;
 				
@@ -350,7 +350,7 @@ v_log("Checking match share code.");
 			if(!steam_gc) {
 				
 				// Messages and disconnects this account
-				console.log('[err]'.bgRed.black.bold+' Steam game coordinator unavailable for bot account "'+this_account.username+'". Disconnecting steam client for this account.');
+				console.log('[err]'.red.bold+' Steam game coordinator unavailable for bot account "'+this_account.username+'". Disconnecting steam client for this account.');
 				steam_client.disconnect();
 				return;
 				
@@ -417,7 +417,7 @@ v_log("Checking match share code.");
 		steam_client.on("error", function(error) {
 			
 			// Logs it to the user and skips
-			console.log('[err]'.bgRed.black.bold+' Unable to connect steam client for bot account "". Error to follow.');
+			console.log('[err]'.red.bold+' Unable to connect steam client for bot account "". Error to follow.');
 			console.log(error);
 			
 		});
@@ -475,7 +475,7 @@ v_log("Checking match share code.");
 		if(accounts.length == 0) {
 			
 			// Messages and goes out
-			console.log('[err]'.bgRed.black.bold+' Could not find any valid username and password combination in your accounts.txt file. Lines beginning with # are ignored. Use format username:password. The script will not continue.');
+			console.log('[err]'.red.bold+' Could not find any valid username and password combination in your accounts.txt file. Lines beginning with # are ignored. Use format username:password. The script will not continue.');
 			Process.exit();
 			
 		}
@@ -523,7 +523,7 @@ v_log("Checking match share code.");
 		if(!verbose)
 			return;
 		
-		console.log("[log]".bgCyan.black.bold+" "+message);
+		console.log("[log]".cyan.bold+" "+message);
 		
 		if(typeof obj !== null && typeof obj != 'undefined') {
 			
@@ -539,7 +539,7 @@ v_log("Checking match share code.");
 		// Uncaught exceptions - verbose only
 		Process.on("uncaughtException", function(error) {
 			
-			console.log('[err]'.bgRed.black.bold+' Uncaught Exception. Error: '+error);
+			console.log('[err]'.red.bold+' Uncaught Exception. Error: '+error);
 			
 		});
 		
