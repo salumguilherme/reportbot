@@ -538,15 +538,10 @@ v_log("Checking match share code.");
 		}
 		
 	}
-	
-	// If verbose
-	if(typeof process.argv[2] != 'undefined' && process.argv[2] == 'debug') {
 		
-		// Uncaught exceptions - verbose only
-		Process.on("uncaughtException", function(error) {
-			
-			console.log('[err]'.red.bold+' Uncaught Exception. Error: '+error);
-			
-		});
+	// Uncaught exceptions - verbose only
+	Process.on("uncaughtException", function(error) {
 		
-	}
+		console.log('[err]'.red.bold+' Uncaught Exception. Error: '+error);
+		
+	});
