@@ -263,15 +263,15 @@ v_log("Checking match share code.");
 		});
 			
 		// Something happend and steam client could not connect
-		steam_client.on('error', function(error) {
+		//steam_client.on('error', function(error) {
 			
-			console.log('[err]'.red.bold+' Steam Client failed to connect. Error to follow. The script will not continue.');
-			console.log(error);
-			steam_client.disconnect();
-			Process.exit();
-			return;
+			//console.log('[err]'.red.bold+' Steam Client failed to connect. Error to follow. The script will not continue.');
+			//console.log(error);
+			//steam_client.disconnect();
+			//Process.exit();
+			//return;
 			
-		});
+		//});
 		
 	}
 	
