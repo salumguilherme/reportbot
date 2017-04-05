@@ -9,10 +9,10 @@
  *
  * If you are timing out enable verbose = true; to see debug information.
  *
- * @version 1.0b
+ * @version 1.1
  * @author gg334
  * @created 2017-03-18
- * @modified 2017-03-19
+ * @modified 2017-04-05
  */
  
  
@@ -20,7 +20,7 @@
 // Essential
 var fs = require("fs"),
 	Steam = require("steam"),
-    SteamID = require("steamid"),
+	SteamID = require("steamid"),
 	CSGOCli = require("csgo"),
 	ReadlineSync = require("readline-sync"),
 	Protos = require("./protos/protos.js"),
@@ -33,7 +33,7 @@ if(typeof process.argv[2] != 'undefined' && process.argv[2] == 'debug')
 	
 //////////////////
 // Change These
-var ScriptTimeout = 45000; 				// Script timeout in milliseconds - 45000 = 45 seconds
+var ScriptTimeout = 60000; 				// Script timeout in milliseconds - 45000 = 45 seconds
 	
 // Stores our SteamClients once connected
 // so we can disconnect them on timeout
@@ -139,7 +139,7 @@ v_log("Checking match share code.");
 		if(MatchShareCode.length > 0)
 			MatchShareCode = MatchShareCode.shift();
 		
-		v_log("ShareCode cleaned up, calling our decoder. Cleaned MatchShareCode: "+MatchShareCodeCode);
+		v_log("ShareCode cleaned up, calling our decoder. Cleaned MatchShareCode: "+MatchShareCode);
 		
 		// Decodes share code
 		var sc_decoder = new CSGOCli.SharecodeDecoder(MatchShareCode);
@@ -222,7 +222,7 @@ v_log("Checking match share code.");
 				v_log("Successfully launched CSGO to fetch live game for user. Calling requestLiveGameForUser now.");
 				
 				// Requests our live game for the user steam id
-				csgo.requestLiveGameForUser(ReportingID);
+				csgo.requestLiveGameForUser(new SteamID(ReportingID).accountid);
 				
 				// Event listener to when we fetch the matchList
 				csgo.on("matchList", function(list) {
@@ -245,22 +245,31 @@ v_log("Checking match share code.");
 					
 					v_log("MatchID: "+MatchID);
 					
-					report_bot();
+					csgo.exit();
+					steam_client.disconnect();
+					
+					v_log('Disconnecting client client.');
+					
+					setTimeout(function() {
+					
+						report_bot();
+						
+					}, 5000);
 					
 				});
 				
 			});
 			
-			// Something happend and steam client could not connect
-			steam_client.on('error', function(error) {
-				
-				console.log('[err]'.red.bold+' Steam Client failed to connect. Error to follow. The script will not continue.');
-				console.log(error);
-				steam_client.disconnect();
-				Process.exit();
-				return;
-				
-			});
+		});
+			
+		// Something happend and steam client could not connect
+		steam_client.on('error', function(error) {
+			
+			console.log('[err]'.red.bold+' Steam Client failed to connect. Error to follow. The script will not continue.');
+			console.log(error);
+			steam_client.disconnect();
+			Process.exit();
+			return;
 			
 		});
 		
