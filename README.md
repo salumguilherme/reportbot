@@ -19,6 +19,8 @@ This nodejs reportbot has been rewritten from the ground up to support live on-g
 - I'm a mac user - only use windows to play - so change the commands accordingly.
 - **Use SteamID64** of the user you are reporting. you can get it from here https://steamid.xyz/
 - You can only report once every 6 hours for each account. Valve limitations.
+- ** DO NOT report old matches - I find that only if I report during the match or at most 5 minutes after the match is over it works**
+- ** Best to use at the end of the match ** This is just a guess but reporting too early I believe might end up in the overwatch being cut short.
 
 
 # 1) Installing
