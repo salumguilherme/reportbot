@@ -60,6 +60,7 @@ You can use the report in 2 ways - normal mode and debug mode. If you keep timin
 npm start
 ```
 It will ask for the SteamID64 of the account you are reporting (get the steamID64 from here https://steamid.xyz/) and the match share code if the user is not in a match. If they are in a match just press enter.
+**If you are reporting for a match currently live, just press enter and the bot will automatically fetch the matchID for you**
 
 To run debug mode use
 ```
