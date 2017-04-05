@@ -3,6 +3,7 @@ This nodejs reportbot has been rewritten from the ground up to support live on-g
 
 ## What you will need
 - 10 Steam accounts with CS:GO (they'll get 11 reports if you also report in game)
+- The steam accounts must have steam guard disabled.
 - You can buy cheap csgo accounts via CD keys etc for about $6-7 each
 - NodeJS and Git installed
 
@@ -16,6 +17,9 @@ This nodejs reportbot has been rewritten from the ground up to support live on-g
 ## Notes
 - You will note that I will not be using `sudo` here. Please do where necessary - I usually just `sudo su -` as soon as I connect to make life easier.
 - I'm a mac user - only use windows to play - so change the commands accordingly.
+- **Use SteamID64** of the user you are reporting. you can get it from here https://steamid.xyz/
+- You can only report once every 6 hours for each account. Valve limitations.
+
 
 # 1) Installing
 
@@ -30,7 +34,35 @@ Clone the repository into the folder by doing
 ```
 git clone https://github.com/salumguilherme/reportbot.git
 ```
-This will automatically create a directory called reportbot-master in the folder you currently are. Let's rename that to something different.
+This will automatically create a directory called reportbot in the folder you currently are. Navigate into the new directory using
 ```
-mv /var/reportbot-master /var/reportbot
+cd reportbot
 ```
+
+## Changing your report accounts
+Now we need to edit our accounts.txt file and include the accounts we will use to do our reporting. There should be one account per line using the format `username:password`
+We can do that by using the nano command
+```
+nano accounts.txt
+```
+Type in your accounts and usernames (one per line remember!). To save and exit press `CTRL + X` then `y` then `Enter` to save the changes. You can nano into it again to make sure it's all good. Basically CTRL + X will exit the nano editor, which will then ask you if you want to make changes, type Y for yes and press enter essentially.
+
+## Downloading dependencies
+Type in the commands below to download the dependencies
+```
+npm install
+node protos/updater.js
+```
+
+# 2) Using the bot
+You can use the report in 2 ways - normal mode and debug mode. If you keep timing out try debug mode. To use the report bot just make sure you are in the report bot directory and type command
+```
+npm start
+```
+It will ask for the SteamID64 of the account you are reporting (get the steamID64 from here https://steamid.xyz/) and the match share code if the user is not in a match. If they are in a match just press enter.
+
+To run debug mode use
+```
+npm start -- debug
+```
+This mode will give you much more feedback on whats happening in the code.
